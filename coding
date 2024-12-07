@@ -1,0 +1,74 @@
+antrian = []
+
+def tambah_pasien(nama, poli):
+    "Menambahkan pasien ke dalam antrian"
+    antrian.append((nama, poli))
+    print(f"Pasien {nama} dengan poli {poli} telah terdaftar dalam antrian.")
+def layani_pasien(nama, status, poli):
+    "Prioritaskan pasien darurat"
+    print(f"Pasien {nama} dengan status {status} dan poli {poli} sedang dilayani.")
+def hitung_waktu_tunggu():
+    "Perkiraan waktu tunggu berdasarkan pasien dalam antrian"
+    import random
+    waktu_per_pasien = random.randint(5,15)
+    return waktu_per_pasien * len(antrian)
+def tambah_dokter_poli(poli, dokter):
+    "Menambahkan poli dan dokter"
+    print(f"Poli {poli} dengan dokter {dokter} ditambahkan.")
+def proses_pasien():
+    "Proses pasien dari antrian sesuai dengan prioritas"
+    if antrian:
+        pasien = antrian.pop(0) 
+        print(f"Pasien {pasien[0]} sedang diperiksa di poli {pasien[1]}.")
+    else:
+        print("Antrian kosong, tidak ada pasien yang dapat diproses.")
+def status_antrian():
+    "Menampilkan status antrian"
+    print(f"Jumlah pasien dalam antrian: {len(antrian)}")
+def menu():
+    "Menampilkan menu dan menjalankan pilihan pengguna"
+    while True:
+        print("----------------- Menu Antrian--------------------")
+        print("-------------Rumah Sakit SukaBahagia--------------")
+        print("a. Tambah pasien")
+        print("b. Layani pasien")
+        print("c. Hitung waktu tunggu")
+        print("d. Tambah dokter poli")
+        print("e. Proses pasien")
+        print("f. Status antrian")
+        print("g. Keluar")
+        pilihan = input("Masukkan pilihan (a-g): ")
+        if pilihan == 'a':
+            nik         = input("Masukkan NIK pasien: ")
+            nama_pasien = input("Masukkan Nama pasien: ")
+            ttl         = input("Masukkan Tempat/Tanggal lahir pasien: ")
+            jk          = input("Masukkan Jenis Kelamin Pasien: ")
+            alamat      = input("Masukkan Alamat pasien: ")
+            poli_pasien = input("Masukkan Poli pasien: ")
+            tambah_pasien(nama_pasien, poli_pasien)
+        elif pilihan == 'b':
+            nama_pasien = input("Masukkan nama pasien: ")
+            status_pasien = input("Masukkan status pasien (Darurat/Biasa): ")
+            poli_pasien = input("Masukkan poli pasien: ")
+            layani_pasien(nama_pasien, status_pasien, poli_pasien)
+        elif pilihan == 'c':
+            waktu_tunggu = hitung_waktu_tunggu()
+            print(f"Waktu tunggu : {waktu_tunggu} menit.")
+        elif pilihan == 'd':
+            poli = input("Masukkan nama poli: ")
+            dokter = input("Masukkan nama dokter: ")
+            tambah_dokter_poli(poli, dokter)
+        elif pilihan == 'e':
+            proses_pasien()
+        elif pilihan == 'f':
+            status_antrian()
+        elif pilihan == 'g':
+            print("===========================================")
+            print("               TerimaKasih")
+            print("             Semoga lekas sembuh")
+            print("❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️")
+            break
+        else:
+            print("Pilihan tidak valid, coba lagi ")
+if __name__ == "__main__":
+    menu()
